@@ -32,9 +32,8 @@ public class SuperHerosTest
     public void setUp()
     {
         superHer1 = new SuperHeros("Spider Man", "Tisse des toiles");
-        univers1 = new Univers("Marvel sa mere");
+        univers1 = new Univers("Marvel");
         superHer1.setUnivers(univers1);
-        superHer1.toString();
     }
 
     /**
@@ -49,22 +48,19 @@ public class SuperHerosTest
 
 
     @Test
-    public void Test1()
+    public void testSpiderMan()
     {
-        SuperHeros superHer1 = new SuperHeros("SpiderMan", "Tisses des toiles");
+        SuperHeros sh = new SuperHeros("Spider Man", "Tisses des toiles");
+        sh.setNom("Batman");
+        assertEquals("Batman", sh.getNom());
     }
 
     @Test
-    public void Test2()
+    public void testNomUnivers()
     {
-        assertEquals("Spider Man", superHer1.getNom());
+        assertEquals("Marvel", univers1.getNom());
     }
 
-    @Test
-    public void d()
-    {
-        assertEquals("Spider Man", superHer1.getNom());
-    }
 }
 
 
