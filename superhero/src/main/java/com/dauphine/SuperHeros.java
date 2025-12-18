@@ -1,3 +1,4 @@
+package com.dauphine;
 
 /**
  * Un super héro possède un nom et un pouvoir
@@ -10,6 +11,7 @@ public class SuperHeros
     private String nom;
     private String pouvoir;
     private Univers univers;
+    private Groupe groupe;
 
     /**
      * Constructor for objects of class SuperHero
@@ -50,6 +52,16 @@ public class SuperHeros
     {
         return this.univers;
     }
+
+    /**
+     * Méthode get afin de récupérer le groupe du super héro
+     *
+     * @return    le groupe du super héro
+     */
+    public Groupe getGroupe()
+    {
+        return this.groupe;
+    }
     
     /**
      * Méthode set qui modifie le nom du super héro
@@ -70,6 +82,24 @@ public class SuperHeros
     {
         this.pouvoir = unPouvoir;
     }
+
+    /**
+     * Modifie le groupe du super héros
+     * Si le héros change de groupe, il est retiré de l'ancien et ajouté au nouveau automatiquement
+     */
+    public void setGroupe(Groupe nouveauGroupe) {
+        if (this.groupe == nouveauGroupe) {
+            return;
+        }
+        Groupe vieuxGroupe = this.groupe;
+        this.groupe = nouveauGroupe;
+        if (vieuxGroupe != null) {
+            vieuxGroupe.supprimerMembre(this);
+        }
+        if (nouveauGroupe != null) {
+            nouveauGroupe.ajouterMembre(this);
+        }
+    }
     
     /**
      * Méthode set qui modifie l'univers du super héro
@@ -87,6 +117,7 @@ public class SuperHeros
      * @param  unUnivers  l'univers du super héro
      */
     public String toString() {
-        return "Je suis " + this.nom + " dans l'univers " + this.univers.getNom() + " et je " + this.pouvoir;
+        String nomUnivers = (this.univers != null) ? this.univers.getNom() : "Inconnu";
+        return "Je suis " + this.nom + " dans l'univers " + nomUnivers + " et je " + this.pouvoir;
     }
 }
